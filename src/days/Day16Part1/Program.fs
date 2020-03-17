@@ -30,7 +30,6 @@ let computePhase (data: int list) =
 
         (abs summed) % 10
 
-
     nums |> Seq.take data.Length |> Seq.map processPosition |> Seq.toList
 
 let runPhases initial n =
