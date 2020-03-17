@@ -14,7 +14,7 @@ let parseInput args =
     line |> Seq.map CharUnicodeInfo.GetDecimalDigitValue |> Seq.toList
 
 let getPattern position =
-    let rec cycle s = seq { yield! s; yield! cycle s }
+    let cycle s = seq { while true do yield! s }
 
     [0; 1; 0; -1]
         |> Seq.collect (fun el -> Enumerable.Repeat (el, position))
