@@ -14,7 +14,7 @@ let parseInput args =
 
     (line, result)
 
-let computePhase (data: int list) =
+let computePhase data =
     let partialSums = seq {
         let mutable acc = 0
         for el in data |> Seq.rev do
