@@ -1,7 +1,6 @@
 ﻿// Learn more about F# at http://fsharp.org
 
 open System.Globalization
-open System.Linq
 
 open ArgParse
 
@@ -13,11 +12,15 @@ let parseInput args =
 
     line |> Seq.map CharUnicodeInfo.GetDecimalDigitValue |> Seq.toList
 
-let getPattern position =
+let getPattern index =
     let cycle s = seq { while true do yield! s }
+    let replicateElems n s = seq {
+        for el in s do
+            for _ in 1..n do yield el
+    }
 
     [0; 1; 0; -1]
-        |> Seq.collect (fun el -> Enumerable.Repeat (el, position))
+        |> replicateElems index
         |> cycle
         |> Seq.skip 1
 
