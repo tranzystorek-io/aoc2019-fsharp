@@ -1,4 +1,4 @@
-# AOC 2019 (:hash: sharp and functional :hash:)
+# AOC 2019 :hash: sharp and functional :hash:
 
 ## About
 
