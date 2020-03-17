@@ -15,14 +15,15 @@ let parseInput args =
     (line, result)
 
 let computePhase data =
-    let partialSums = seq {
-        let mutable acc = 0
-        for el in data |> Seq.rev do
-            acc <- acc + el
-            yield (abs acc) % 10
-    }
+    let reversePartialSums =
+        data
+        |> Seq.rev
+        |> Seq.scan (+) 0
 
-    partialSums |> Seq.rev |> Seq.toList
+    reversePartialSums
+        |> Seq.map (fun v -> v % 10)
+        |> Seq.rev
+        |> Seq.toList
 
 let runPhases initial n =
     let step state =
