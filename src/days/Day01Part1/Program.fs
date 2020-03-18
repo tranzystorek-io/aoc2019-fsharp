@@ -1,7 +1,5 @@
 ﻿// Learn more about F# at http://fsharp.org
 
-open System
-
 open ArgParse
 
 let fuelReq value = value / 3 - 2
