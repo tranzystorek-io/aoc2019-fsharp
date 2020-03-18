@@ -25,10 +25,10 @@ let getPattern index =
         |> Seq.skip 1
 
 let computePhase (data: int list) =
-    let nums = Seq.unfold (fun state -> Some(state, state + 1)) 1
+    let nums = Seq.initInfinite ((+) 1)
     let processPosition pos =
         let pattern = getPattern pos
-        let summed = data |> Seq.zip pattern |> Seq.sumBy (fun (v, p) -> v * p)
+        let summed = data |> Seq.zip pattern |> Seq.sumBy ((<||) (*))
 
         (abs summed) % 10
 
