@@ -21,7 +21,7 @@ let isValid password =
             if a > b then
                 false
             else
-                loopCheck (found || a.Equals b) tail
+                loopCheck (found || a = b) tail
 
     password |> Seq.pairwise |> LazyList.ofSeq |> loopCheck false
 
