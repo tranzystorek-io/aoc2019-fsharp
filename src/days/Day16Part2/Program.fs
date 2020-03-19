@@ -12,7 +12,7 @@ let parseInput args =
 
     let result = line |> Seq.map CharUnicodeInfo.GetDecimalDigitValue |> Seq.toList
 
-    (line, result)
+    line, result
 
 let computePhase data =
     let reversePartialSums =
@@ -34,7 +34,7 @@ let runPhases initial n =
 
 [<EntryPoint>]
 let main argv =
-    let (text, receivedData) = parseInput argv
+    let text, receivedData = parseInput argv
 
     let messageOffset = text.[..6] |> int
 

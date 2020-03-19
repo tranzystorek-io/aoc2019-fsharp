@@ -11,7 +11,7 @@ let parseInput args =
     let line = Seq.head lines
 
     let split = line.Split('-', 2) |> Seq.map int |> Seq.toArray
-    (split.[0], split.[1])
+    split.[0], split.[1]
 
 let isValid password =
     let rec loopCheck found pairs =
@@ -27,7 +27,7 @@ let isValid password =
 
 [<EntryPoint>]
 let main argv =
-    let (lower, upper) = parseInput argv
+    let lower, upper = parseInput argv
 
     let solution = seq { lower .. upper } |> Seq.map string |> Seq.filter isValid |> Seq.length
 
