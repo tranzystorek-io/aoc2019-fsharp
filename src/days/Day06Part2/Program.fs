@@ -60,8 +60,8 @@ let main argv =
     let meDiv, santaDiv = zipped |> Seq.skipWhile ((<||) (=)) |> List.ofSeq |> List.unzip
 
     let getEffectiveLength s = s |> Seq.takeWhile ((<>) null) |> Seq.length
-    let meLength = meDiv |> getEffectiveLength
-    let santaLength = santaDiv |> getEffectiveLength
+    let meLength = getEffectiveLength meDiv
+    let santaLength = getEffectiveLength santaDiv
 
     let solution = meLength + santaLength
 
