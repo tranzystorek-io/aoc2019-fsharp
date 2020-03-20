@@ -20,9 +20,9 @@ let parseInput args =
 
 let findPath (orbits:Map<string, string list>) destination =
     let rec loopFind searchspace =
-        match searchspace with
-        | LazyList.Nil -> None
-        | LazyList.Cons((path, grav), tail) ->
+        match Seq.unCons searchspace with
+        | None -> None
+        | Some((path, grav), tail) ->
             if grav = destination then
                 Some path
             else
@@ -30,11 +30,10 @@ let findPath (orbits:Map<string, string list>) destination =
                 let orbiters =
                     orbits |> Map.findOrDefault grav []
                     |> Seq.map (fun orb -> currentPath, orb)
-                    |> LazyList.ofSeq
 
-                loopFind (LazyList.append orbiters tail)
+                loopFind (Seq.append orbiters tail)
 
-    [[], "COM"] |> LazyList.ofList |> loopFind
+    loopFind [[], "COM"]
 
 let zipLongest defaultValue (a:'a list) (b:'a list) =
     let fill =

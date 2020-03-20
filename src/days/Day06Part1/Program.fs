@@ -20,19 +20,18 @@ let parseInput args =
 
 let getOrbitCount (orbits:Map<string, string list>) =
     let rec loopCount sum searchspace =
-        match searchspace with
-        | LazyList.Nil -> sum
-        | LazyList.Cons((level, grav), tail) ->
+        match Seq.unCons searchspace with
+        | None -> sum
+        | Some((level, grav), tail) ->
             let currentLevel = level + 1
             let currentSum = sum + level
             let orbiters =
                 orbits |> Map.findOrDefault grav []
                 |> Seq.map (fun orb -> currentLevel, orb)
-                |> LazyList.ofSeq
 
-            loopCount currentSum (LazyList.append orbiters tail)
+            loopCount currentSum (Seq.append orbiters tail)
 
-    [0, "COM"] |> LazyList.ofList |> loopCount 0
+    loopCount 0 [0, "COM"]
 
 [<EntryPoint>]
 let main argv =

@@ -15,15 +15,15 @@ let parseInput args =
 
 let isValid password =
     let rec loopCheck found pairs =
-        match pairs with
-        | LazyList.Nil -> found
-        | LazyList.Cons((a, b), tail) ->
+        match Seq.unCons pairs with
+        | None -> found
+        | Some((a, b), tail) ->
             if a > b then
                 false
             else
                 loopCheck (found || a = b) tail
 
-    password |> Seq.pairwise |> LazyList.ofSeq |> loopCheck false
+    password |> Seq.pairwise |> loopCheck false
 
 [<EntryPoint>]
 let main argv =
