@@ -58,7 +58,7 @@ let main argv =
     let zipped = zipLongest null mePath santaPath
     let meDiv, santaDiv = zipped |> Seq.skipWhile ((<||) (=)) |> List.ofSeq |> List.unzip
 
-    let getEffectiveLength s = s |> Seq.takeWhile ((<>) null) |> Seq.length
+    let getEffectiveLength = Seq.takeWhile ((<>) null) >> Seq.length
     let meLength = getEffectiveLength meDiv
     let santaLength = getEffectiveLength santaDiv
 
