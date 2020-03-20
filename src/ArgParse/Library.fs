@@ -13,7 +13,7 @@ type AocArguments =
             | InputFile _ -> "input file (defaults to STDIN if not provided)"
 
 let stdinLines () =
-    Seq.initInfinite (fun _ -> Console.ReadLine())
+    Seq.initInfinite (ignore >> Console.ReadLine)
         |> Seq.takeWhile ((<>) null)
 
 let errorHandler =
