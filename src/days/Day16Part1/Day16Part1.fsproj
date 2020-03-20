@@ -13,4 +13,8 @@
     <ProjectReference Include="..\..\ArgParse\ArgParse.fsproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Fsharpx.Collections" Version="2.1.2" />
+  </ItemGroup>
+
 </Project>
