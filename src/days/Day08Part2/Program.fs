@@ -39,9 +39,12 @@ let main argv =
         | _ -> failwith "Unrecognized pixel color"
 
     let width = 25
-    decoded
+    let picture =
+        decoded
         |> Seq.map mapColor
         |> Seq.chunkBySize width
         |> Seq.map System.String
-        |> Seq.iter (printfn "%s")
+        |> String.concat "\n"
+
+    printfn "%s" picture
     0 // return an integer exit code
