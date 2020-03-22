@@ -14,16 +14,18 @@ let parseInput args =
 
 let decode img =
     let stepZip state =
-        let heads = state |> Seq.map Seq.head |> Seq.toList
-        let tails = state |> Seq.map Seq.tail
-
-        Some(heads, tails)
+        if state |> Seq.forall Seq.isEmpty then
+            None
+        else
+            let heads = state |> Seq.map Seq.head |> Seq.toList
+            let tails = state |> Seq.map Seq.tail
+            Some(heads, tails)
 
     let w, h = 25, 6
     let layerSize = w * h
     let layers = img |> Seq.chunkBySize layerSize |> Seq.map Seq.ofArray
 
-    layers |> Seq.unfold stepZip |> Seq.truncate layerSize |> Seq.map (Seq.skipWhile ((=) 2) >> Seq.head)
+    layers |> Seq.unfold stepZip |> Seq.map (Seq.skipWhile ((=) 2) >> Seq.head)
 
 [<EntryPoint>]
 let main argv =
