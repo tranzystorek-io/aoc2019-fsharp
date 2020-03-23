@@ -41,9 +41,8 @@ let main argv =
     let width = 25
     let picture =
         decoded
-        |> Seq.map mapColor
         |> Seq.chunkBySize width
-        |> Seq.map System.String
+        |> Seq.map (Array.map mapColor >> System.String)
         |> String.concat "\n"
 
     printfn "%s" picture
