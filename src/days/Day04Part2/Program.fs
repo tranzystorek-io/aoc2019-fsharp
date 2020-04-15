@@ -17,15 +17,13 @@ let isValid password =
     let rec loopCheck adjacentLength found pairs =
         match Seq.unCons pairs with
         | None -> found || adjacentLength = 2
-        | Some((a, b), tail) ->
-            if a > b then
-                false
-            elif a = b then
-                let currentLength = adjacentLength + 1
-                loopCheck currentLength found tail
-            else
-                let currentFound = found || adjacentLength = 2
-                loopCheck 1 currentFound tail
+        | Some((a, b), _) when a > b -> false
+        | Some((a, b), tail) when a = b ->
+            let currentLength = adjacentLength + 1
+            loopCheck currentLength found tail
+        | Some(_, tail) ->
+            let currentFound = found || adjacentLength = 2
+            loopCheck 1 currentFound tail
 
     password |> Seq.pairwise |> loopCheck 1 false
 

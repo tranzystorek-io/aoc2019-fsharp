@@ -17,11 +17,8 @@ let isValid password =
     let rec loopCheck found pairs =
         match Seq.unCons pairs with
         | None -> found
-        | Some((a, b), tail) ->
-            if a > b then
-                false
-            else
-                loopCheck (found || a = b) tail
+        | Some((a, b), _) when a > b -> false
+        | Some((a, b), tail) -> loopCheck (found || a = b) tail
 
     password |> Seq.pairwise |> loopCheck false
 

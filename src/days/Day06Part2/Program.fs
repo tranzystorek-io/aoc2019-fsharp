@@ -22,16 +22,14 @@ let findPath (orbits:Map<string, string list>) destination =
     let rec loopFind searchspace =
         match Seq.unCons searchspace with
         | None -> None
+        | Some((path, grav), _) when grav = destination -> Some path
         | Some((path, grav), tail) ->
-            if grav = destination then
-                Some path
-            else
-                let currentPath = path @ [grav]
-                let orbiters =
-                    orbits |> Map.findOrDefault grav []
-                    |> Seq.map (fun orb -> currentPath, orb)
+            let currentPath = path @ [grav]
+            let orbiters =
+                orbits |> Map.findOrDefault grav []
+                |> Seq.map (fun orb -> currentPath, orb)
 
-                loopFind (Seq.append orbiters tail)
+            loopFind (Seq.append orbiters tail)
 
     loopFind [[], "COM"]
 
