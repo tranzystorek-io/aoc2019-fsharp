@@ -45,5 +45,5 @@ let main argv =
         |> Seq.map (Array.map mapColor >> System.String)
         |> String.concat "\n"
 
-    printfn "%s" picture
+    printfn $"{picture}"
     0 // return an integer exit code

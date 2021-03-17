@@ -28,5 +28,5 @@ let main argv =
 
     let solution = seq { lower .. upper } |> Seq.map string |> Seq.filter isValid |> Seq.length
 
-    printfn "%i" solution
+    printfn $"{solution}"
     0 // return an integer exit code

@@ -18,5 +18,5 @@ let main argv =
 
     let solution = lines |> Seq.sumBy (int >> fuelReqChained)
 
-    printfn "%i" solution
+    printfn $"{solution}"
     0 // return an integer exit code

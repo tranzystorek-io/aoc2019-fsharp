@@ -30,5 +30,5 @@ let main argv =
 
     let solution = ones * twos
 
-    printfn "%i" solution
+    printfn $"{solution}"
     0 // return an integer exit code

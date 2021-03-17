@@ -39,5 +39,5 @@ let main argv =
 
     let solution = getOrbitCount orbits
 
-    printfn "%i" solution
+    printfn $"{solution}"
     0 // return an integer exit code

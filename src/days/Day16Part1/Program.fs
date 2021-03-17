@@ -44,5 +44,5 @@ let main argv =
     let computed = runPhases data 100
     let solution = computed.[..7] |> Seq.map string |> String.concat ""
 
-    printfn "%s" solution
+    printfn $"{solution}"
     0 // return an integer exit code

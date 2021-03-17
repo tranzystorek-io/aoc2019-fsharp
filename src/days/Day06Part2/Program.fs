@@ -62,5 +62,5 @@ let main argv =
 
     let solution = meLength + santaLength
 
-    printfn "%i" solution
+    printfn $"{solution}"
     0 // return an integer exit code
